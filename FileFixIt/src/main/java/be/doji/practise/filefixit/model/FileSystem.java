@@ -62,7 +62,7 @@ public class FileSystem {
             Path relativePath = directoryPath.relativize(getClosestParent(directoryPath));
             return StringUtils.countMatches(relativePath.toString(), "..");
         } catch (NoParentFoundException e) {
-            return StringUtils.countMatches(directory, "/") + 1;
+            return StringUtils.countMatches(directory, "/") + (directory.startsWith("/")?0:1);
         }
     }
 

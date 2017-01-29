@@ -57,4 +57,25 @@ public class Assignment {
     public void addDirectoriesToEvaluate(List<String> directories) {
         this.directoriesToCreate.addAll(directories);
     }
+
+    public int getSolution(){
+        return countRequiredCreates(createFileSystem(this.getExistingDirectories()));
+    }
+
+    private int countRequiredCreates(FileSystem fileSystem) {
+        int cummulativeCreatesRequired = 0;
+        for(String directoryToEvaluate : this.getDirectoriesToCreate()) {
+            cummulativeCreatesRequired += fileSystem.getAmountOfRequiredCreates(directoryToEvaluate);
+            fileSystem.addDirectory(directoryToEvaluate);
+        }
+        return cummulativeCreatesRequired;
+    }
+
+    private FileSystem createFileSystem(List<String> existingDirectories) {
+        FileSystem fileSystem = new FileSystem();
+        for(String existingDirectory : existingDirectories) {
+            fileSystem.addDirectory(existingDirectory);
+        }
+        return fileSystem;
+    }
 }
