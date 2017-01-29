@@ -23,6 +23,13 @@ public class InputHandlerTest {
     }
 
     @Test
+    public void testParseFileAmountDoubleDigitBug() throws FileProcessingException {
+        InputHandler handler = new InputHandler();
+        List<Assignment> parsedAssignments = handler.parseFile(getInputFile("io/baseInputDoubleDigitLines.txt"));
+        Assert.assertEquals(4, parsedAssignments.size());
+    }
+
+    @Test
     public void testParseFileContent() throws FileProcessingException {
         InputHandler handler = new InputHandler();
         List<Assignment> parsedAssignments = handler.parseFile(getInputFile("io/baseInput.txt"));

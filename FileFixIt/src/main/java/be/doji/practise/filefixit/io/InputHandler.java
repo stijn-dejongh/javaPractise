@@ -26,11 +26,13 @@ public class InputHandler {
         lines = FileUtils.readFileLines(fileLocation);
 
         while (currentLineCounter < lines.size()) {
-            int amountofExistingDirectory = Integer.parseInt(String.valueOf(lines.get(currentLineCounter).charAt(0)));
+            String[] declaringLine = lines.get(currentLineCounter).split(" ");
+            int amountofExistingDirectory = Integer.parseInt(String.valueOf(declaringLine[0]));
             int amountofDirectoriesToEvaluate = Integer
-                    .parseInt(String.valueOf(lines.get(currentLineCounter).charAt(2)));
+                    .parseInt(String.valueOf(declaringLine[1]));
             currentLineCounter++;
             assignments.add(createAssignment(amountofExistingDirectory, amountofDirectoriesToEvaluate));
+            assignmentCounter++;
         }
 
         return assignments;

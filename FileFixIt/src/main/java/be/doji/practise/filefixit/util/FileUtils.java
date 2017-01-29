@@ -6,9 +6,7 @@ import com.sun.javafx.binding.StringFormatter;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +40,10 @@ public final class FileUtils {
     public static Path writeLinesToFile(List<String> lines, String fileLocation) throws FileProcessingException {
         try {
             Path filePath = Paths.get(fileLocation);
-            Files.write(filePath, lines, Charset.defaultCharset());
+            if (!filePath.toFile().exists()) {
+                Files.createFile(filePath);
+            }
+            Files.write(filePath, lines, Charset.defaultCharset(), StandardOpenOption.TRUNCATE_EXISTING);
             return filePath;
         } catch (IOException e) {
             String errorMessage = StringFormatter
