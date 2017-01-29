@@ -18,7 +18,7 @@ import java.util.List;
 public class FileFixIt {
 
     private static final String INPUT_DIRECTORY = "input";
-    private static final String INPUT_FILE_NAME = "A-small-practice.in";
+    private static final String INPUT_FILE_NAME = "A-large-practice.in";
     private static final String OUTPUT_DIRECTORY = "output";
 
     public static void main(String[] args) {
