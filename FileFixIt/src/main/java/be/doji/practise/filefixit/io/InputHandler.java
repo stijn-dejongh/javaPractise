@@ -29,6 +29,7 @@ public class InputHandler {
             int amountofExistingDirectory = Integer.parseInt(String.valueOf(lines.get(currentLineCounter).charAt(0)));
             int amountofDirectoriesToEvaluate = Integer
                     .parseInt(String.valueOf(lines.get(currentLineCounter).charAt(2)));
+            currentLineCounter++;
             assignments.add(createAssignment(amountofExistingDirectory, amountofDirectoriesToEvaluate));
         }
 
@@ -38,17 +39,16 @@ public class InputHandler {
     private Assignment createAssignment(int amountofExistingDirectory, int amountofDirectoriesToEvaluate) {
         Assignment assignment = new Assignment(assignmentCounter);
         assignment.addExistingDirectories(processDirectoryLines(amountofExistingDirectory));
-        currentLineCounter += amountofExistingDirectory +1 ;
         assignment.addDirectoriesToEvaluate(processDirectoryLines(amountofDirectoriesToEvaluate));
-        currentLineCounter += amountofDirectoriesToEvaluate +1 ;
         return assignment;
     }
 
     private List<String> processDirectoryLines(int amountofExistingDirectory) {
         List<String> directories = new ArrayList<>();
-        for (int j = currentLineCounter + 1; j <= currentLineCounter + amountofExistingDirectory; j++) {
+        for (int j = currentLineCounter; j < currentLineCounter + amountofExistingDirectory; j++) {
             directories.add(lines.get(j));
         }
+        currentLineCounter += amountofExistingDirectory;
         return directories;
     }
 }

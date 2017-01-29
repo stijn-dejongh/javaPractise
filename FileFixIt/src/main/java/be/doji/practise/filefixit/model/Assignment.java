@@ -1,5 +1,6 @@
 package be.doji.practise.filefixit.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +13,8 @@ public class Assignment {
     private List<String> directoriesToCreate;
 
     public Assignment(int id) {
+        this.existingDirectories = new ArrayList<>();
+        this.directoriesToCreate = new ArrayList<>();
         this.id = id;
     }
 

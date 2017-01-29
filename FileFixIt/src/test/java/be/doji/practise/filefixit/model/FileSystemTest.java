@@ -1,4 +1,4 @@
-package test.java.be.doji.practise.filefixit.model;
+package be.doji.practise.filefixit.model;
 
 import be.doji.practise.filefixit.model.FileSystem;
 import org.junit.Assert;
