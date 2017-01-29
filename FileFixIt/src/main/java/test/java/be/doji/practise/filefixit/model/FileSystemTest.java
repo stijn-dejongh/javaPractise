@@ -24,14 +24,34 @@ public class FileSystemTest {
     }
 
     @Test
-    public void testGetAmountOfRequiredCreates() {
+    public void testGetAmountOfRequiredCreatesSubDirectory() {
         FileSystem fileSystem = new FileSystem();
         fileSystem.addDirectory(REFERENCE_DIRECTORY);
         int amountOfRequiredCreates = fileSystem.getAmountOfRequiredCreates("/var/opt/test/find/this");
         Assert.assertEquals(2, amountOfRequiredCreates);
     }
 
+    @Test
+    public void testGetAmountOfRequiredCreatesIdenticalDirectory() {
+        FileSystem fileSystem = new FileSystem();
+        fileSystem.addDirectory(REFERENCE_DIRECTORY);
+        int amountOfRequiredCreates = fileSystem.getAmountOfRequiredCreates("/var/opt/test");
+        Assert.assertEquals(0, amountOfRequiredCreates);
+    }
 
+    @Test
+    public void testGetAmountOfRequiredCreatesSiblingDirectory() {
+        FileSystem fileSystem = new FileSystem();
+        fileSystem.addDirectory(REFERENCE_DIRECTORY);
+        int amountOfRequiredCreates = fileSystem.getAmountOfRequiredCreates("/var/opt/lol");
+        Assert.assertEquals(1, amountOfRequiredCreates);
+    }
 
-
+    @Test
+    public void testGetAmountOfRequiredCreatesDifferentRootDirectory() {
+        FileSystem fileSystem = new FileSystem();
+        fileSystem.addDirectory(REFERENCE_DIRECTORY);
+        int amountOfRequiredCreates = fileSystem.getAmountOfRequiredCreates("/home/doji/coding/practise");
+        Assert.assertEquals(4, amountOfRequiredCreates);
+    }
 }

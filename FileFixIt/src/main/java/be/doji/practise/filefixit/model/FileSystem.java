@@ -42,8 +42,17 @@ public class FileSystem {
     }
 
     public void addDirectory(Path path) {
-        if (path != null) {
-            existingDirectories.add(Paths.get(path.toString()));
+        if (path == null) {
+            throw new IllegalArgumentException("You tried to ad 'null' to the directories managed by the filesystem");
+        }
+        for (Path parent = Paths.get(path.toString()); parent != null; parent = parent.getParent()) {
+            addDirectoryIfNotManaged(parent);
+        }
+    }
+
+    private void addDirectoryIfNotManaged(Path parent) {
+        if (!existingDirectories.contains(parent)) {
+            existingDirectories.add(parent);
         }
     }
 
@@ -58,7 +67,7 @@ public class FileSystem {
     }
 
     private Path getClosestParent(Path directory) throws NoParentFoundException {
-        for (Path parent = directory.getParent(); parent != null; parent = parent.getParent()) {
+        for (Path parent = directory; parent != null; parent = parent.getParent()) {
             if (existingDirectories.contains(parent)) {
                 return parent;
             }
