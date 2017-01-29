@@ -58,7 +58,7 @@ public class FileSystem {
     }
 
     private Path getClosestParent(Path directory) throws NoParentFoundException {
-        for (Path parent = directory.getParent(); parent != null; parent.getParent()) {
+        for (Path parent = directory.getParent(); parent != null; parent = parent.getParent()) {
             if (existingDirectories.contains(parent)) {
                 return parent;
             }
