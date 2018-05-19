@@ -11,15 +11,16 @@ import java.util.stream.Collectors;
 
 class Solution {
 
-    static String toCamelCase(String s) {
-        if (s == null || s.length() == 0) {
-            return s;
-        }
-        String[] split = s.split("-|_");
-        return split[0] + Arrays.stream(split).skip(1).map(part -> convertPart(part)).collect(Collectors.joining()).replaceAll("-|_", "");
+  static String toCamelCase(String s) {
+    if (s == null || s.length() == 0) {
+      return s;
     }
+    String[] split = s.split("-|_");
+    return split[0] + Arrays.stream(split).skip(1).map(part -> convertPart(part))
+        .collect(Collectors.joining()).replaceAll("-|_", "");
+  }
 
-    private static String convertPart(String part) {
-        return (part.substring(0, 1).toUpperCase() + part.substring(1));
-    }
+  private static String convertPart(String part) {
+    return (part.substring(0, 1).toUpperCase() + part.substring(1));
+  }
 }
