@@ -5,6 +5,8 @@ import java.util.BitSet;
 
 /**
  * Created by doji on 20.05.18.
+ *
+ * Kata: https://www.codewars.com/kata/54d496788776e49e6b00052f/train/java
  */
 public class SumOfDivided {
 

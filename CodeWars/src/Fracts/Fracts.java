@@ -7,7 +7,6 @@ package Fracts;
  */
 public class Fracts {
 
-  // your code
   public static String convertFrac(long[][] lst) {
     if (lst == null || lst.length < 1) {
       return "";
