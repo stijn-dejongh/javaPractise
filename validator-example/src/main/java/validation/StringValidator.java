@@ -12,11 +12,11 @@ public class StringValidator extends Validator<String> {
         .getValidationErrors();
   }
 
-  private Boolean isNotEmpty(String s) {
+  private boolean isNotEmpty(String s) {
     return s != null && s.length() > 0;
   }
 
-  private Boolean doesNotContainBadWord(String s) {
+  private boolean doesNotContainBadWord(String s) {
     return s != null && !s.toUpperCase().contains("FUDGE");
   }
 
